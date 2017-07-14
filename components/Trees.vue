@@ -4,7 +4,10 @@
 
     </div> -->
     <template v-if="processingInstance">
-      <div id="treesCanvas"></div>
+      <div
+        id="treesCanvas"
+        @click="resetTrees"
+        ></div>
     </template>
     <template v-else>
       {{ loadingMessage }}
@@ -38,8 +41,16 @@
     },
     created () {
       // this.trees = new Branch(this.parent)
-      if (process.BROWSER_BUILD) {
-        this.processingInstance = new p5(sketch, 'treesCanvas')
+      this.generate()
+    },
+    methods: {
+      generate () {
+        if (process.BROWSER_BUILD) {
+          this.processingInstance = new p5(sketch, 'treesCanvas')
+        }
+      },
+      resetTrees () {
+        this.processingInstance.trees = 0
       }
     }
   }

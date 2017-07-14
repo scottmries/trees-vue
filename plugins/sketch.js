@@ -11,7 +11,7 @@ export default function (p) {
 
   var tree
 
-  var trees = 1
+  p.trees = 1
 
   var treeColor
 
@@ -57,16 +57,16 @@ export default function (p) {
   }
 
   p.draw = function () {
-    if (trees < numTrees){
+    if (p.trees === 0) {
+      p.background(p.color(50, 50, 60))
+    }
+    if (p.trees < numTrees){
       tree.draw(treeColor, p)
       if(tree.opacity >= 255){
         var parent = generateParent(p, trunkThickness)
         tree = new Tree(parent)
-        trees++
+        p.trees++
       }
-    }
-    else {
-      p.noLoop()
     }
 // micLevel = mic.getLevel()
   }
