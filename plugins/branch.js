@@ -51,7 +51,8 @@ Branch.prototype.draw = function(c, p){
   // console.log(c);
   p.stroke(c);
   // console.log(this.thickness);
-  p.strokeWeight(100);
+  p.strokeWeight(this.thickness);
+  // debugger
   p.line(this.startPoint.x, this.startPoint.y, this.endPoint.x, this.endPoint.y);
   p.line(this.startPoint.x, p.height-this.startPoint.y, this.endPoint.x, p.height-this.endPoint.y);
   if(!this.subbranches){return;}

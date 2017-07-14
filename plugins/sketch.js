@@ -17,7 +17,7 @@ export default function (p) {
 
   var treeImage
 
-  var trunkThickness = 10
+  var trunkThickness = 10.0
 
   p.setup = function () {
     var generatingP = document.querySelector('.generating')
@@ -26,7 +26,7 @@ export default function (p) {
     var parent = generateParent(p, trunkThickness)
     tree = new Tree(parent)
     // tree = new Tree(p.random() * p.width, p.height / 2, p.height / 16, trunkThickness)
-    treeColor = p.color(255)
+    treeColor = p.color(0)
 //   trees = []
     // lights = []
     treeImage = p.createImage(p.width * 2, p.height/2)
@@ -57,7 +57,6 @@ export default function (p) {
     if (trees < 20){
       tree.draw(treeColor, p)
       if(tree.opacity >= 255){
-        // console.log(Tree)
         var parent = generateParent(p, trunkThickness)
         tree = new Tree(parent)
         trees++
@@ -66,7 +65,6 @@ export default function (p) {
     else {
       p.noLoop()
     }
-p.background(p.color(50,50,60))
 // micLevel = mic.getLevel()
   }
 
