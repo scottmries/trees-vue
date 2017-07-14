@@ -22,5 +22,6 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: rgb(50,50,60);
 }
 </style>

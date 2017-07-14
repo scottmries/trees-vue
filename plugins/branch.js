@@ -1,5 +1,6 @@
 export default function Branch (parent) {
   this.parent = parent
+  this.thetaSpread = parent.thetaSpread
   this.setStartPoint()
   this.setRandomFactor()
   this.setLength()
@@ -25,11 +26,12 @@ Branch.prototype.setLength = function () {
 }
 
 Branch.prototype.setThickness = function () {
-  this.thickness = this.parent.thickness * this.randomFactor
+  this.thickness = this.parent.thickness * (0.6 + Math.random() * 0.2)
 }
 
 Branch.prototype.setTheta = function () {
-  this.theta = (Math.random() - 0.5) * 120 + this.parent.theta
+  // var theta = (Math.random() - 0.5) * this.thetaSpread + prevTheta;
+  this.theta = (Math.random() - 0.5) * this.thetaSpread + this.parent.theta
 }
 
 Branch.prototype.setEndpoint = function () {
@@ -40,7 +42,7 @@ Branch.prototype.setEndpoint = function () {
 }
 
 Branch.prototype.setSubbranches = function () {
-  if (this.length > 3) {
+  if (this.length > 5) {
     this.subbranches = [new Branch(this), new Branch(this)]
   } else {
     this.subbranches = []

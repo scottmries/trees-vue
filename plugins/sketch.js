@@ -19,11 +19,14 @@ export default function (p) {
 
   var trunkThickness = 10.0
 
+  var numTrees = 0
+
   p.setup = function () {
     var generatingP = document.querySelector('.generating')
     var canvas = document.querySelector('#treesCanvas')
     p.createCanvas(p.windowWidth,p.windowHeight)
     var parent = generateParent(p, trunkThickness)
+    numTrees = p.width/50
     tree = new Tree(parent)
     // tree = new Tree(p.random() * p.width, p.height / 2, p.height / 16, trunkThickness)
     treeColor = p.color(0)
@@ -54,7 +57,7 @@ export default function (p) {
   }
 
   p.draw = function () {
-    if (trees < 20){
+    if (trees < numTrees){
       tree.draw(treeColor, p)
       if(tree.opacity >= 255){
         var parent = generateParent(p, trunkThickness)
@@ -86,7 +89,8 @@ function generateParent(p, trunkThickness) {
       },
       length: parseFloat(p.height)/16.0,
       theta: 90,
-      thickness: trunkThickness
+      thickness: trunkThickness,
+      thetaSpread: 30
 
   }
 }
