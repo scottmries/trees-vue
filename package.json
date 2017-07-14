@@ -5,7 +5,10 @@
   "author": "scottmries <scottmries@gmail.com>",
   "private": true,
   "dependencies": {
-    "nuxt": "latest"
+    "chai": "^4.1.0",
+    "nuxt": "latest",
+    "sinon": "^2.3.8",
+    "sinon-chai": "^2.11.0"
   },
   "scripts": {
     "dev": "nuxt",

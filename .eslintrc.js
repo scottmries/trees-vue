@@ -11,6 +11,11 @@ module.exports = {
     'html'
   ],
   // add your custom rules here
-  rules: {},
+  rules: {
+    'no-debugger': 0,
+    'no-unused-vars': 0,
+    'no-undef': 0,
+    'new-cap': 0
+  },
   globals: {}
 }
