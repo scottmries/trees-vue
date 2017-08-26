@@ -1,4 +1,4 @@
-export function Branch(parent){
+export default function Branch(parent){
   this.parent = parent
   this.setStartPoint()
   this.setRandomFactor()
@@ -7,11 +7,10 @@ export function Branch(parent){
   this.setTheta()
   this.setEndpoint()
   this.setSubbranches()
+  this.setAccumulatedLength()
 }
 
 Branch.prototype.setStartPoint = function() {
-  {
-
     this.startPoint = {
     x: this.parent.endPoint.x,
     y: this.parent.endPoint.y
@@ -46,7 +45,12 @@ Branch.prototype.setSubbranches = function() {
     this.subbranches = [new Branch(this), new Branch(this)]
   } else {
     this.subbranches = []
+    return this
   }
+}
+
+Branch.prototype.setAccumulatedLength = function () {
+  this.accumulatedLength = this.parent.length + this.length
 }
 
 Branch.prototype.draw = function(c, p){
@@ -60,4 +64,8 @@ Branch.prototype.draw = function(c, p){
       this.subbranches[i].draw(c, p);
     }
   }
+}
+
+Branch.prototype.playAudio = function(ctx, opts) {
+  
 }
