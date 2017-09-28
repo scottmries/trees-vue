@@ -26,7 +26,7 @@ Branch.prototype.setLength = function () {
 }
 
 Branch.prototype.setThickness = function () {
-  this.thickness = this.parent.thickness * (0.6 + Math.random() * 0.2)
+  this.thickness = this.parent.thickness * this.randomFactor
 }
 
 Branch.prototype.setTheta = function () {

@@ -1,17 +1,14 @@
-import Tree from '~plugins/tree.js'
+import Tree from '~/plugins/tree.js'
 
 export default function (p) {
-// MouseX and mouseY move the window
-// Scrolling up and down zoom in and out (window level)
-// Make branches appear along the branches, with appropriate length/thickness scaling
-// Add lights
-// Add ripple effect from audio input
 
-  // var mic
+  p.reset = true
 
   var tree
 
-  p.trees = 1
+  var treeIndex = 0
+
+  p.trees = []
 
   var treeColor
 
@@ -22,18 +19,18 @@ export default function (p) {
   var numTrees = 0
 
   p.setup = function () {
-    var generatingP = document.querySelector('.generating')
-    var canvas = document.querySelector('#treesCanvas')
+
     p.createCanvas(p.windowWidth,p.windowHeight)
     var parent = generateParent(p, trunkThickness)
     numTrees = p.width/50
-    tree = new Tree(parent)
+    // tree = new Tree(parent)
     // tree = new Tree(p.random() * p.width, p.height / 2, p.height / 16, trunkThickness)
     treeColor = p.color(0)
 //   trees = []
     // lights = []
     treeImage = p.createImage(p.width * 2, p.height/2)
-    p.background(p.color(50, 50, 60))
+    p.background(0)
+    // p.background(255)
 //   for(var i = 0 i < 20 i++){
 //   trees.push(new Tree(p.random()*p.width, p.height/2, p.height/16, trunkThickness))
 //   trees[i].draw(treeColor, p)
@@ -57,17 +54,49 @@ export default function (p) {
   }
 
   p.draw = function () {
-    if (p.trees === 0) {
-      p.background(p.color(50, 50, 60))
-    }
-    if (p.trees < numTrees){
-      tree.draw(treeColor, p)
-      if(tree.opacity >= 255){
-        var parent = generateParent(p, trunkThickness)
-        tree = new Tree(parent)
-        p.trees++
+    p.noCursor()
+    if(p.trees){
+
+      // console.log(p.tree.draw)
+      for(var i = 0; i < p.trees.length; i++){
+
+        p.trees[i].draw(p.c, p, true)
       }
     }
+    if(p.reset){
+      p.background(0)
+      p.reset = false
+    }
+
+    // c = p.color(p.red(c), p.green(c), p.blue(c), this.opacity);
+    // this.trunk.draw(c,p);
+    // this.opacity += 255/10;
+    // p.tree.draw(this.c, this.p)
+    // console.log('draw')
+    // if (p.trees.value){
+    //   p.tree = p.trees.value[treeIndex]
+    // } else {
+    //   p.tree = p.trees[treeIndex]
+    // }
+    // if (typeof p.tree !== "undefined"){
+    //   console.log(p.tree)
+    //   // console.log(p.tree)
+    //   if (p.trees === 0) {
+    //     p.background(p.color(50, 50, 60))
+    //   }
+    //   if (p.treeIndex < p.trees.length){
+    //     p.tree.draw(treeColor, p)
+    //     if(p.tree.opacity >= 255 ){
+    //
+    //       treeIndex++
+    //       p.tree = p.trees[p.treeIndex]
+    //     }
+    //   } else {
+    //       // p.background(p.color(50, 50, 60))
+    //     treeIndex = 0
+    //   }
+    // }
+
 // micLevel = mic.getLevel()
   }
 

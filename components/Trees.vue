@@ -3,7 +3,7 @@
     <!-- <div class="" id="treesCanvas">
 
     </div> -->
-    <template v-if="processingInstance">
+    <template v-if="p">
       <div
         id="treesCanvas"
         @click="resetTrees"
@@ -16,41 +16,24 @@
 </template>
 
 <script>
-  import Branch from '~plugins/branch.js'
-  import sketch from '~plugins/sketch.js'
-  // if (process.BROWSER_BUILD) {
-  //   var {P5} = require('~assets/scripts/p5-export.js')
-  // }
+  import Branch from '~/plugins/branch.js'
+
 
   export default {
+    props: ['p', 'trees', 'tree'],
     data () {
       return {
-        loadingMessage: 'making a landscape...',
-        parent: {
-          endPoint: {
-            x: 10,
-            y: 10
-          },
-          length: 5,
-          theta: 90,
-          thickness: 10
-        },
-        trees: null,
-        processingInstance: null
+        loadingMessage: 'hi'
       }
     },
     created () {
-      // this.trees = new Branch(this.parent)
-      this.generate()
+      if (process.build) {
+        this.p.trees = this.trees
+      }
     },
     methods: {
-      generate () {
-        if (process.BROWSER_BUILD) {
-          this.processingInstance = new p5(sketch, 'treesCanvas')
-        }
-      },
-      resetTrees () {
-        this.processingInstance.trees = 0
+      resetTrees() {
+        this.p.trees = this.trees
       }
     }
   }

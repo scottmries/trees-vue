@@ -1,4 +1,4 @@
-import Branch from '~plugins/branch.js'
+import Branch from '~/plugins/branch.js'
 
 export default function Tree(parent){
     this.opacity = 0;
